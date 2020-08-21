@@ -273,6 +273,20 @@ en:
     webinar_explained:  conduct a seminar over the platform where multiple users could join using the public link provided by the host
     chat_explained: Real Time chats during the meetings , Emojis , Electronic hand raising to ask other meeting participants for a chance to speak
     note_explained: Write down Meeting Minutes , Share Meeting Minutes with other participants , Instant view of notes during meeting
+  pricing:
+    title: Pricing
+    basic: Basic 
+    bronze_explained: One on One Meeting
+    free: Free
+    pro: Professional
+    silver_explained: For Small Sized Teams 
+    pro_amount: 350 Birr/month
+    business: Business
+    gold_explained: For Medium Sized Teams 
+    bus_amount: 500 Birr/month
+    enterprise: Enterprise
+    diamond_explained: For Large Corporations
+    ent_amount: 600 Birr/month
   footer:
     legal: Legal
     privpolicy: Privacy Policy
