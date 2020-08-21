@@ -78,7 +78,7 @@ gem 'cancancan', '~> 2.0'
 
 group :production do
   # Use a postgres database in production.
-  gem 'pg', '~> 0.18'
+  gem 'pg', '~> 0.18.4'
   gem 'sequel'
 
   # For a better logging library in production
@@ -98,7 +98,7 @@ group :development, :test do
   # Environment configuration.
   gem 'dotenv-rails'
   # Use a sqlite database in test and development.
-  gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', '~> 1.4', '>= 1.4.2'
 end
 
 group :test do

@@ -256,10 +256,23 @@ en:
   expired_reset_token: Password reset link has expired!
   features:
     title: Features
-    rooms: Personalized Rooms
-    recordings: Recording Management
-    designs: Custom Designs
+    room: Personalized Meeting Rooms
+    recording: Recording Management
+    video: Video Conferancing 
+    cloud: Cloud Storage
+    security: Secure your Data
+    webinar: Host Webinars
+    chat: Real Time Chat
+    note: Share Meeting Minutes 
     authentication: User Authentication
+    room_explained: Create custom Rooms, Breakout Rooms, Manage room settings and  invite others to Room using a short easily communicable URL
+    recording_explained: Record Meetings, Viewing Recordings, Modifying Recordings , Sorting and Searching Recordings
+    video_explained: Start Video Conferences , Join Video Conferences through invite links , High Quality Video Communication
+    cloud_explained: Store Recordings on our secure servers , Unlimited Cloud Storage 
+    security_explained:  end-to-end data encryption plus transport layer Security Ensured , User Authentication and Omniauth authentication
+    webinar_explained:  conduct a seminar over the platform where multiple users could join using the public link provided by the host
+    chat_explained: Real Time chats during the meetings , Emojis , Electronic hand raising to ask other meeting participants for a chance to speak
+    note_explained: Write down Meeting Minutes , Share Meeting Minutes with other participants , Instant view of notes during meeting
   footer:
     legal: Legal
     privpolicy: Privacy Policy
@@ -293,9 +306,9 @@ en:
     search:
       start: Start searching...
   landing:
-    about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
-    welcome: Welcome to BigBlueButton.
-    video: Watch our tutorial on using Greenlight
+    about: "%{href} is a simple <b>Video Conferencing Platform</b>. You can create your own rooms to host sessions, or join others using a short and convenient link."
+    welcome: Selamta Chat 
+    video: Watch our tutorial on using Selamta Chat
     upgrade: Show me how to upgrade to 2.0!
     version: We've released a new version of Greenlight, but your database isn't compatible.
   language_default: Default (browser language)
