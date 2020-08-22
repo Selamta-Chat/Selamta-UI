@@ -19,39 +19,539 @@
     <h2 class="mb-6"><%= t("pricing.title") %></h2>
 
     <div class="row feature-stamp">
-        <div class="card mr-3" style="width: 18rem;">
-            <span class="stamp bg-primary"><i class="fas fa-building fa-8x"></i></span>
+
+        <!-- Enterprise Package -->
+        <div class="card mr-3" style="width: 18rem; height: 60rem;">
+            <span class="stamp bg-yellow"><i class="fas fa-building fa-8x"></i></span>
             <div class="card-body">
-                <h4 class="card-title display-1"><%= t("pricing.enterprise") %></h4>
+                <h4 class="card-title"><b><%= t("pricing.enterprise") %></b></h4>
                 <p class="card-text"><%= t("pricing.diamond_explained") %></p>
                 <p class="h1"><%= t("pricing.ent_amount") %></p>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.number_participants", number: 200)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.unlimited_hours")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.cloud_storage", number: 20)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.meeting_rooms", number: 20)  %></p>
+                </div>
+
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webinar", number: 200)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webcast")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.voip", number: 100)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.logo") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.background") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.recording") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.admin") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.chat") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.electronic") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.notes") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.support") %></p>
+                </div>
+              
+               <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+
             </div>
         </div>
 
+        <!-- Business Package -->
         <div class="card mr-3" style="width: 18rem;">
-            <span class="stamp bg-primary"><i class="fas fa-home fa-8x"></i></span>
+            <span class="stamp bg-gray"><i class="fas fa-home fa-8x"></i></span>
             <div class="card-body">
-                <h4 class="card-title display-1"><%= t("pricing.business") %></h4>
+                <h4 class="card-title"><b><%= t("pricing.business") %></b></h4>
                 <p class="card-text"><%= t("pricing.gold_explained") %></p>
                 <p class="h1"><%= t("pricing.bus_amount") %></p>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.number_participants", number: 40)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.unlimited_hours")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.cloud_storage", number: 15)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.meeting_rooms", number: 10)  %></p>
+                </div>
+
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webinar", number: 100)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webcast")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.voip", number: 40)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.logo") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.background") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.recording") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.admin") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.chat") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.electronic") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.notes") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.support") %></p>
+                </div>
+ 
+             <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+
             </div>
         </div>
 
+        <!-- Professional Package -->
         <div class="card mr-3" style="width: 18rem;">
-            <span class="stamp bg-primary"><i class="fas fa-user-friends fa-8x"></i></span>
+            <span class="stamp bg-red"><i class="fas fa-user-friends fa-8x"></i></span>
             <div class="card-body">
-                <h4 class="card-title display-1"><%= t("pricing.pro") %></h4>
+                <h4 class="card-title"><b><%= t("pricing.pro") %></b></h4>
                 <p class="card-text"><%= t("pricing.silver_explained") %></p>
                 <p class="h1"><%= t("pricing.pro_amount") %></p>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.number_participants", number: 10)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.unlimited_hours")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.cloud_storage", number: 10)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.meeting_rooms", number: 5)  %></p>
+                </div>
+
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webinar", number: 50)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webcast")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.voip", number: 10)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.logo") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.background") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.recording") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.admin") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.chat") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.electronic") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.notes") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.support") %></p>
+                </div>
+             <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+
             </div>
         </div>
 
+        <!-- Free Package -->
         <div class="card mr-3" style="width: 18rem;">
             <span class="stamp bg-primary"><i class="fas fa-gift fa-8x"></i></span>
             <div class="card-body">
-                <h4 class="card-title display-1"><%= t("pricing.basic") %></h4>
+                <h4 class="card-title"><b><%= t("pricing.basic") %></b></h4>
                 <p class="card-text"><%= t("pricing.bronze_explained") %></p>
                 <p class="h1"><%= t("pricing.free") %></p>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.free_participants", number: 2)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.free_hours", minutes: 45)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.free_cloud")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.free_rooms")  %></p>
+                </div>
+
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webinar", number: 2)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.webcast")  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.voip", number: 1)  %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.logo") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.background") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.recording") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.admin") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.chat") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.electronic") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.notes") %></p>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <p class="ml-2">
+                        <%= t("pricing.support") %></p>
+                </div>
+
+             <%= link_to t("Try for Free"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+
             </div>
         </div>
 

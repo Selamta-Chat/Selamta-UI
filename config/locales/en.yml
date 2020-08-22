@@ -278,15 +278,38 @@ en:
     basic: Basic 
     bronze_explained: One on One Meeting
     free: Free
+    free_participants: "%{number} Participants One-on-One Meeting"
+    free_hours: "%{minutes} minutes"
+    unlimited_hours: "Unlimited Hours"
+    free_cloud: has No storage Capability 
+    free_rooms: has One Home Room 
+    free_webcast: can not host No webcast 
+
+
+    number_participants: "%{number} Participants per Meeting"
+    cloud_storage: "%{number}GB Cloud Storage "
+    meeting_rooms: "%{number} Meeting Rooms"
+    webinar: "Host Webinars with %{number} participants"
+    webcast: "Record and Playback Meetings"
+    voip: "%{number} Voice over Internet (Voip)"
+    logo: "Upload a Company Logo"
+    background: "Background Customization"
+    recording: "Meeting Recording Capability"
+    admin: "Administrator Controls"
+    chat: "Real Time Texting Features"
+    electronic: "Electronic Hand Raising Capability"
+    notes: "Meeting Minutes and Share Notes"
+    support: "Customer Support"
+
     pro: Professional
     silver_explained: For Small Sized Teams 
-    pro_amount: 350 Birr/month
+    pro_amount: 350 Birr/month 
     business: Business
     gold_explained: For Medium Sized Teams 
-    bus_amount: 500 Birr/month
+    bus_amount: 500 Birr/month  
     enterprise: Enterprise
     diamond_explained: For Large Corporations
-    ent_amount: 600 Birr/month
+    ent_amount: 600 Birr/month 
   footer:
     legal: Legal
     privpolicy: Privacy Policy
