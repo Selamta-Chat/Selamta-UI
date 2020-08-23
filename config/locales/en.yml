@@ -310,8 +310,25 @@ en:
     enterprise: Enterprise
     diamond_explained: For Large Corporations
     ent_amount: 600 Birr/month 
+  support: 
+    title: Support
+
+    term: Terms
+    service: Terms of Service
+    cookies: Cookie Policy
+    privacy: Privacy Policy
+
+    social: Socials
+    twitter: Twitter
+    instagram: Instagram
+    facebook: Facebook
+
+    support: Contacts
+    sales: Contact Sales 
+    support_center: Contact Support Center
   footer:
     legal: Legal
+    year: 2020
     privpolicy: Privacy Policy
     powered_by: Powered by %{href}.
   forgot_password:
