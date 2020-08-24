@@ -263,4 +263,12 @@ class SessionsController < ApplicationController
     # Set the user's social id to the one being returned from auth
     user.update_attribute(:social_uid, @auth['uid'])
   end
+
+  # GET /about
+  # routes to about page 
+  def about 
+    redirect_to about_path
+  end 
+
+
 end

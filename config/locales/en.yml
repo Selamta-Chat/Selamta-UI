@@ -254,6 +254,19 @@ en:
       message: You do not have access to this application
       help: If you believe this is a mistake, please contact your system administrator.
   expired_reset_token: Password reset link has expired!
+
+  about:
+    title: About Us
+    core: Core Values  
+    mission: Mission
+    mission_statement: Our Mission is to provide users with the Best Video Conferancing tool. 
+    vision: Vision
+    vision_statement: Our Vision is to expand this product to be applicable in multiple sectors.
+    team: Team  
+    name: " %{name}"
+    position: "%{position}" 
+    history: History
+    brief_history: "We are in the Digital Revolution era ; and our team wants to be the Pioneers of the Ethiopian Video Conference Ecosystem. We have been researching and developing strategies to achieve this. We need to adapt to the 'New Normal' which is working remotely through the Digital Platforms available."
   features:
     title: Features
     room: Personalized Meeting Rooms
@@ -273,6 +286,7 @@ en:
     webinar_explained:  conduct a seminar over the platform where multiple users could join using the public link provided by the host
     chat_explained: Real Time chats during the meetings , Emojis , Electronic hand raising to ask other meeting participants for a chance to speak
     note_explained: Write down Meeting Minutes , Share Meeting Minutes with other participants , Instant view of notes during meeting
+
   pricing:
     title: Pricing
     basic: Basic 

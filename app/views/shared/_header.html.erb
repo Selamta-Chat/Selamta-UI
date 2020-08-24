@@ -91,9 +91,9 @@
                 <% else %>
                 <% allow_greenlight_accounts = allow_greenlight_accounts? %>
                 <% if allow_greenlight_accounts %>
-                <%= link_to t("About"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
-                <%= link_to t("Pricing"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
-                <%= link_to t("Contact"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %> 
+                <%= link_to t("About"), about_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+                <%= link_to t("Pricing"), root_path(anchor: "pricing-section"), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+                <%= link_to t("Contact"), root_path(anchor: "support-section"), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
                 <%= link_to t("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
                 <% elsif Rails.configuration.loadbalanced_configuration %>
                 <%= link_to t("login"), omniauth_login_url(:bn_launcher), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
