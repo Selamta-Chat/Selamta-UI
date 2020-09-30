@@ -31,6 +31,14 @@ display_usage() {
   echo -e "\nOptional arguments \n"
   echo -e "  branch | tag  The branch (e.g. master | release-2.0.5)"
 }
+#!/bin/bash
+#set -e
+
+# Remove a potentially pre-existing server.pid for Rails.
+#rm -f ../tmp/pids/server.pid
+
+# Then exec the container's main process (what's set as CMD in the Dockerfile).
+#exec "$@"
 
 # if less than two arguments supplied, display usage
 if [ $# -le 0 ]; then
