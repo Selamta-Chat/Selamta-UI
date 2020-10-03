@@ -1,0 +1,7 @@
+<h1>Packages Page</h1> 
+<% package_id = params[:packages] %> 
+<%= render "packages/components/ent_package" %> 
+ 
+<%= render "packages/components/all_packages", packages: @packages, pagy: @pagy, title: t("room.recordings")%>
+ 
+

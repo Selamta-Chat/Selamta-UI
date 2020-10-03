@@ -1,0 +1,105 @@
+ <tr class="room-block">
+     <td>
+         <div id="room-title" class="edit_hover_class">
+             <% if package["user_id"] == current_user.uid %>
+             <i class="fas fa-home pr-1"></i>
+             <% end %>
+             <span class="room-name-text" title="<%= package["item_name"] %>">
+                 <%= package["item_name"] %>
+             </span>
+         </div>
+     </td>
+
+     <td>
+         <div id="room-title" class="edit_hover_class">
+             <span style="background-color: lightgreen;" class="room-name-text" title="<%= package["status"] %>">
+                 <%= package["status"] %>
+             </span>
+         </div>
+     </td>
+
+     <td>
+         <% if package_date_exists(package["start_date"]) %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text" title="<%= package["start_date"] %>">
+                 <% start_date_year = package["start_date"].split('T')[0].split('-')[0] %>
+                 <% start_date_month = package["start_date"].split('T')[0].split('-')[1] %>
+                 <% start_date_day = package["start_date"].split('T')[0].split('-')[2] %>
+                 <%= start_date_day + "-" +  start_date_month+ "-" + start_date_year %>
+             </span>
+         </div>
+         <% else %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text">
+                 <%= "-" + "-"   %>
+             </span>
+         </div>
+         <%end%>
+     </td>
+
+     <td>
+         <% if package_date_exists(package["end_date"]) %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text" title="<%= package["end_date"] %>">
+                 <% end_date_year = package["end_date"].split('T')[0].split('-')[0] %>
+                 <% end_date_month = package["end_date"].split('T')[0].split('-')[1] %>
+                 <% end_date_day = package["end_date"].split('T')[0].split('-')[2] %>
+                 <%= end_date_day + "-" +  end_date_month+ "-" + end_date_year %>
+             </span>
+         </div>
+         <% else %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text">
+                 <%= "-" + "-"   %>
+             </span>
+         </div>
+         <%end%>
+     </td>
+
+     <td>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text" title="<%= package["merchant_order_id"] %>">
+                 <%= package["merchant_order_id"] %>
+             </span>
+         </div>
+     </td>
+
+     <td>
+         <% if package_transaction_exists(package["transaction_code"]) %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text" title="<%= package["transaction_code"] %>">
+                 <%= package["transaction_code"] %>
+             </span>
+         </div>
+         <% else %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text">
+                 <%= "-" + "-"   %>
+             </span>
+         </div>
+         <%end%>
+     </td>
+
+     <td>
+         <% if package_currency_exists(package["currency"]) %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text" title="<%= package["currency"] %>">
+                 <%= package["currency"] %>
+             </span>
+         </div>
+         <% else %>
+         <div id="room-title" class="edit_hover_class">
+             <span class="room-name-text">
+                 <%= "ETB"   %>
+             </span>
+         </div>
+         <%end%>
+     </td>
+
+     <td>
+         <%= link_to t("package.details"), show_package_path(:package => package), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+
+     </td>
+
+
+ </tr>

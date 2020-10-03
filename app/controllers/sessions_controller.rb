@@ -34,10 +34,10 @@ class SessionsController < ApplicationController
 
     if one_provider
       provider_path = if Rails.configuration.omniauth_ldap
-        ldap_signin_path
-      else
-        "#{Rails.configuration.relative_url_root}/auth/#{@providers.first}"
-      end
+          ldap_signin_path
+        else
+          "#{Rails.configuration.relative_url_root}/auth/#{@providers.first}"
+        end
 
       redirect_to provider_path
     end
@@ -80,7 +80,7 @@ class SessionsController < ApplicationController
 
     # Check correct password was entered
     return redirect_to(signin_path, alert: I18n.t("invalid_credentials")) unless user.try(:authenticate,
-      session_params[:password])
+                                                                                          session_params[:password])
     # Check that the user is not deleted
     return redirect_to root_path, flash: { alert: I18n.t("registration.banned.fail") } if user.deleted?
 
@@ -102,7 +102,7 @@ class SessionsController < ApplicationController
 
   # GET/POST /auth/:provider/callback
   def omniauth
-    @auth = request.env['omniauth.auth']
+    @auth = request.env["omniauth.auth"]
 
     begin
       process_signin
@@ -124,19 +124,19 @@ class SessionsController < ApplicationController
   # GET /auth/ldap
   def ldap
     ldap_config = {}
-    ldap_config[:host] = ENV['LDAP_SERVER']
-    ldap_config[:port] = ENV['LDAP_PORT'].to_i != 0 ? ENV['LDAP_PORT'].to_i : 389
-    ldap_config[:bind_dn] = ENV['LDAP_BIND_DN']
-    ldap_config[:password] = ENV['LDAP_PASSWORD']
-    ldap_config[:auth_method] = ENV['LDAP_AUTH']
-    ldap_config[:encryption] = if ENV['LDAP_METHOD'] == 'ssl'
-                                    'simple_tls'
-                                elsif ENV['LDAP_METHOD'] == 'tls'
-                                    'start_tls'
-                                end
-    ldap_config[:base] = ENV['LDAP_BASE']
-    ldap_config[:filter] = ENV['LDAP_FILTER']
-    ldap_config[:uid] = ENV['LDAP_UID']
+    ldap_config[:host] = ENV["LDAP_SERVER"]
+    ldap_config[:port] = ENV["LDAP_PORT"].to_i != 0 ? ENV["LDAP_PORT"].to_i : 389
+    ldap_config[:bind_dn] = ENV["LDAP_BIND_DN"]
+    ldap_config[:password] = ENV["LDAP_PASSWORD"]
+    ldap_config[:auth_method] = ENV["LDAP_AUTH"]
+    ldap_config[:encryption] = if ENV["LDAP_METHOD"] == "ssl"
+        "simple_tls"
+      elsif ENV["LDAP_METHOD"] == "tls"
+        "start_tls"
+      end
+    ldap_config[:base] = ENV["LDAP_BASE"]
+    ldap_config[:filter] = ENV["LDAP_FILTER"]
+    ldap_config[:uid] = ENV["LDAP_UID"]
 
     if params[:session][:username].blank? || session_params[:password].blank?
       return redirect_to(ldap_signin_path, alert: I18n.t("invalid_credentials"))
@@ -146,7 +146,7 @@ class SessionsController < ApplicationController
 
     return redirect_to(ldap_signin_path, alert: I18n.t("invalid_credentials")) unless result
 
-    @auth = parse_auth(result.first, ENV['LDAP_ROLE_FIELD'], ENV['LDAP_ATTRIBUTE_MAPPING'])
+    @auth = parse_auth(result.first, ENV["LDAP_ROLE_FIELD"], ENV["LDAP_ATTRIBUTE_MAPPING"])
 
     begin
       process_signin
@@ -164,7 +164,7 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.require(:session).permit(:package, :email, :password)
   end
 
   def one_provider
@@ -173,7 +173,7 @@ class SessionsController < ApplicationController
   end
 
   def check_user_exists
-    User.exists?(social_uid: @auth['uid'], provider: current_provider)
+    User.exists?(social_uid: @auth["uid"], provider: current_provider)
   end
 
   def check_user_deleted(email)
@@ -181,11 +181,11 @@ class SessionsController < ApplicationController
   end
 
   def check_auth_deleted
-    User.deleted.exists?(social_uid: @auth['uid'], provider: current_provider)
+    User.deleted.exists?(social_uid: @auth["uid"], provider: current_provider)
   end
 
   def current_provider
-    @auth['provider'] == "bn_launcher" ? @auth['info']['customer'] : @auth['provider']
+    @auth["provider"] == "bn_launcher" ? @auth["info"]["customer"] : @auth["provider"]
   end
 
   # Check if the user already exists, if not then check for invitation
@@ -199,7 +199,7 @@ class SessionsController < ApplicationController
   def process_signin
     @user_exists = check_user_exists
 
-    if !@user_exists && @auth['provider'] == "twitter"
+    if !@user_exists && @auth["provider"] == "twitter"
       return redirect_to root_path, flash: { alert: I18n.t("registration.deprecated.twitter_signup") }
     end
 
@@ -210,7 +210,7 @@ class SessionsController < ApplicationController
     return redirect_to root_path, flash: { alert: I18n.t("registration.invite.no_invite") } unless passes_invite_reqs
 
     # Switch the user to a social account if they exist under the same email with no social uid
-    switch_account_to_social if !@user_exists && auth_changed_to_social?(@auth['info']['email'])
+    switch_account_to_social if !@user_exists && auth_changed_to_social?(@auth["info"]["email"])
 
     user = User.from_omniauth(@auth)
 
@@ -232,12 +232,12 @@ class SessionsController < ApplicationController
 
     login(user)
 
-    if @auth['provider'] == "twitter"
+    if @auth["provider"] == "twitter"
       flash[:alert] = if allow_user_signup? && allow_greenlight_accounts?
-        I18n.t("registration.deprecated.twitter_signin", link: signup_path(old_twitter_user_id: user.id))
-      else
-        I18n.t("registration.deprecated.twitter_signin", link: signin_path(old_twitter_user_id: user.id))
-      end
+          I18n.t("registration.deprecated.twitter_signin", link: signup_path(old_twitter_user_id: user.id))
+        else
+          I18n.t("registration.deprecated.twitter_signin", link: signin_path(old_twitter_user_id: user.id))
+        end
     end
   end
 
@@ -256,19 +256,17 @@ class SessionsController < ApplicationController
 
   # Set the user's social id to the new id being passed
   def switch_account_to_social
-    user = User.find_by(email: @auth['info']['email'], provider: @user_domain, social_uid: nil)
+    user = User.find_by(email: @auth["info"]["email"], provider: @user_domain, social_uid: nil)
 
     logger.info "Switching account to social account for #{user.uid}"
 
     # Set the user's social id to the one being returned from auth
-    user.update_attribute(:social_uid, @auth['uid'])
+    user.update_attribute(:social_uid, @auth["uid"])
   end
 
   # GET /about
-  # routes to about page 
-  def about 
+  # routes to about page
+  def about
     redirect_to about_path
-  end 
-
-
+  end
 end

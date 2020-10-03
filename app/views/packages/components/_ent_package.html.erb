@@ -1,0 +1,77 @@
+<%
+# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+# This program is free software; you can redistribute it and/or modify it under the
+# terms of the GNU Lesser General Public License as published by the Free Software
+# Foundation; either version 3.0 of the License, or (at your option) any later
+# version.
+#
+# BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# You should have received a copy of the GNU Lesser General Public License along
+# with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+%>
+
+
+<div id="enterprise-package-section" class="container mt-8 mb-6 text-center">
+
+    <h2 class="mb-6"><%= t("pricing.enterprise") %></h2>
+
+    <div class="row feature-stamp justify-content-center">
+
+        <!-- Enterprise Package -->
+        <div class="card mr-3" style="width: 22rem;">
+            <span class="stamp bg-yellow"><i class="fas fa-building fa-8x"></i></span>
+            <div class="card-body">
+                <h4 class="card-title"><b><%= t("pricing.enterprise") %></b></h4>
+                <p class="card-text"><%= t("pricing.diamond_explained") %></p>
+                <p class="h1"><%= t("pricing.ent_amount") %></p>
+                <h3> Pay for:
+                    <% if defined?(params[:cycle])%>
+                    <%= package_selected_cycle(params[:cycle]) %>
+                    <% else %>
+                    <%= package_selected_cycle('1') %>
+                    <% end %>
+                </h3>
+                <div class="dropdown pb-8 mb-8">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <% if defined?(params[:cycle])%>
+                        <%= package_selected_cycle(params[:cycle]) %>
+                        <% else %>
+                        <%= package_selected_cycle("0") %>
+                        <% end %>
+
+                    </button>
+                    <div class="dropdown-menu">
+                        <%= button_to set_bill_cycle_path(:package => params[:packages], value: "1"), class: "dropdown-item", "data-disable": "" do %>
+                        <%= t("1 Month") %>
+                        <% end %>
+                        <%= button_to set_bill_cycle_path(:package => params[:packages], value: "3"), class: "dropdown-item", "data-disable": "" do %>
+                        <%=t("3 Months") %>
+                        <% end %>
+                        <%= button_to set_bill_cycle_path(:package => params[:packages], value: "6"), class: "dropdown-item", "data-disable": "" do %>
+                        <%= t("6 Months") %>
+                        <% end %>
+                        <%= button_to set_bill_cycle_path(:package => params[:packages], value: "12"), class: "dropdown-item", "data-disable": "" do %>
+                        <%= t("1 Year") %>
+                        <% end %>
+                    </div>
+                </div>
+
+                <h3> Total Payment:
+                    <% if defined?(params[:cycle])%>
+                    <%= package_total(params[:packages],params[:cycle]) %>
+                    <% else %>
+                    <%= package_total(params[:packages],params[:cycle]) %>
+                    <% end %>
+                </h3>  
+                
+                <%= link_to t("Pay"), test_package_path(:package => params[:packages], :cycle => params[:cycle], :uid => current_user.uid ), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+ 
+
+            </div>
+        </div>
+
+    </div>
+</div>

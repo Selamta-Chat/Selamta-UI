@@ -13,6 +13,9 @@ gem 'rails', '~> 5.2.4.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.12'
 
+# use Http Party for making Http request from Ruby 
+gem 'httparty', '~> 0.18.1'
+
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 

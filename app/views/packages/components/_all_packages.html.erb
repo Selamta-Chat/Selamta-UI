@@ -1,0 +1,64 @@
+<div class="sessions pb-5">
+    <div class="container pt-6">
+
+        <%= @packages%>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table id="recordings-table" class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                            <thead>
+                                <tr>
+                                    <th data-header="Package Name" data-order="<%= @order_column == "name" ? @order_direction : "none" %>">
+                                        <%= t("package.name") %>
+                                    </th>
+
+                                    <th>
+                                        <%= t("package.status") %>
+                                    </th>
+
+                                     <th>
+                                        <%= t("package.start") %>
+                                    </th>
+
+                                     <th>
+                                        <%= t("package.end") %>
+                                    </th>
+
+                                     <th>
+                                        <%= t("package.merchant_order_id") %>
+                                    </th>
+
+                                     <th>
+                                        <%= t("package.transaction_code") %>
+                                    </th>
+
+                                     <th>
+                                        <%= t("package.currency") %>
+                                    </th>
+                                        
+                                     <th>
+                                        
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id="rooms-table">
+                                <% @packages.each do |package| %>
+                                <%= render "packages/components/package_row", package: package %>
+                                <% end %>
+                            </tbody>
+                        </table>
+
+                        <% if true%>
+                        <div class="float-md-right mt-4">
+                            <%== pagy_bootstrap_nav(@pagy) %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

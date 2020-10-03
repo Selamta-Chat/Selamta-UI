@@ -1,0 +1,15 @@
+// Place all the styles related to the packages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+#enterprise-package-section {
+    vertical-align: middle;
+    padding-top: 2px;
+  }
+.package-align{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+.dropdown-bottom-margin {
+    margin-bottom: 100px;
+}

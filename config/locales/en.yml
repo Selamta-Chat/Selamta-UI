@@ -106,7 +106,7 @@ en:
       demoted: User has been successfully demoted
       invite: Invite successfully sent to %{email}
       invite_email_verification: Emails must be enabled in order to use this method. Please contact your system administrator.
-      merge_fail: There was an issue merging the user accounts. Please check the users selected and try again 
+      merge_fail: There was an issue merging the user accounts. Please check the users selected and try again
       merge_success: User accounts merged successfully
       perm_deleted: User has been permanently deleted
       promoted: User has been successfully promoted
@@ -136,7 +136,7 @@ en:
       edit_site_settings: Allow users with this role to edit site settings
       edit_roles: Allow users with this role to edit other roles
       manage_users: Allow users with this role to manage users
-      invalid_assignment: There was a problem assigning the roles to the user. Please check the values and try again 
+      invalid_assignment: There was a problem assigning the roles to the user. Please check the values and try again
       colour:
         title: Role Colour
         info: Set the colour that will be associated with the role
@@ -201,7 +201,22 @@ en:
   copied: Copied
   copy: Copy
   date:
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    month_names:
+      [
+        ~,
+        January,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December,
+      ]
   default_admin: You are still using the default password for this account. Please click <a href="%{edit_link}">here</a> to change it
   delete: Delete
   delivery_error: An error occured during email delivery. Please contact an administrator!
@@ -257,48 +272,63 @@ en:
 
   about:
     title: About Us
-    core: Core Values  
+    core: Core Values
     mission: Mission
-    mission_statement: Our Mission is to provide users with the Best Video Conferancing tool. 
+    mission_statement: Our Mission is to provide users with the Best Video Conferancing tool.
     vision: Vision
     vision_statement: Our Vision is to expand this product to be applicable in multiple sectors.
-    team: Team  
+    team: Team
     name: " %{name}"
-    position: "%{position}" 
+    position: "%{position}"
     history: History
     brief_history: "We are in the Digital Revolution era ; and our team wants to be the Pioneers of the Ethiopian Video Conference Ecosystem. We have been researching and developing strategies to achieve this. We need to adapt to the 'New Normal' which is working remotely through the Digital Platforms available."
   features:
     title: Features
     room: Personalized Meeting Rooms
     recording: Recording Management
-    video: Video Conferancing 
+    video: Video Conferancing
     cloud: Cloud Storage
     security: Secure your Data
     webinar: Host Webinars
     chat: Real Time Chat
-    note: Share Meeting Minutes 
+    note: Share Meeting Minutes
     authentication: User Authentication
     room_explained: Create custom Rooms, Breakout Rooms, Manage room settings and  invite others to Room using a short easily communicable URL
     recording_explained: Record Meetings, Viewing Recordings, Modifying Recordings , Sorting and Searching Recordings
     video_explained: Start Video Conferences , Join Video Conferences through invite links , High Quality Video Communication
-    cloud_explained: Store Recordings on our secure servers , Unlimited Cloud Storage 
-    security_explained:  end-to-end data encryption plus transport layer Security Ensured , User Authentication and Omniauth authentication
-    webinar_explained:  conduct a seminar over the platform where multiple users could join using the public link provided by the host
+    cloud_explained: Store Recordings on our secure servers , Unlimited Cloud Storage
+    security_explained: end-to-end data encryption plus transport layer Security Ensured , User Authentication and Omniauth authentication
+    webinar_explained: conduct a seminar over the platform where multiple users could join using the public link provided by the host
     chat_explained: Real Time chats during the meetings , Emojis , Electronic hand raising to ask other meeting participants for a chance to speak
     note_explained: Write down Meeting Minutes , Share Meeting Minutes with other participants , Instant view of notes during meeting
 
+  package:
+    name: Package Name
+    status: Status
+    start: Start date
+    end: End date
+    merchant_order_id: Merchant Order ID
+    transaction_code: Transaction Code
+    currency: Currency
+    details: Details
+    pay: Pay
+    pay_route: Pay with YenePay
+    upgrade_package: Upgrade Current Package ?
+    cancel: Cancel
+    bill_cycle: Bill Cycle
+    package_subscription: Subscribed Package
+    flash_new: You already have a New package in process, If you wish to Buy a new package please delete the Existing Package
   pricing:
     title: Pricing
-    basic: Basic 
+    basic: Basic
     bronze_explained: One on One Meeting
     free: Free
     free_participants: "%{number} Participants One-on-One Meeting"
     free_hours: "%{minutes} minutes"
     unlimited_hours: "Unlimited Hours"
-    free_cloud: has No storage Capability 
-    free_rooms: has One Home Room 
-    free_webcast: can not host No webcast 
-
+    free_cloud: has No storage Capability
+    free_rooms: has One Home Room
+    free_webcast: can not host No webcast
 
     number_participants: "%{number} Participants per Meeting"
     cloud_storage: "%{number}GB Cloud Storage "
@@ -316,15 +346,15 @@ en:
     support: "Customer Support"
 
     pro: Professional
-    silver_explained: For Small Sized Teams 
-    pro_amount: 350 Birr/month 
+    silver_explained: For Small Sized Teams
+    pro_amount: 350 Birr/month
     business: Business
-    gold_explained: For Medium Sized Teams 
-    bus_amount: 500 Birr/month  
+    gold_explained: For Medium Sized Teams
+    bus_amount: 500 Birr/month
     enterprise: Enterprise
     diamond_explained: For Large Corporations
-    ent_amount: 600 Birr/month 
-  support: 
+    ent_amount: 600 Birr/month
+  support:
     title: Support
 
     term: Terms
@@ -338,7 +368,7 @@ en:
     facebook: Facebook
 
     support: Contacts
-    sales: Contact Sales 
+    sales: Contact Sales
     support_center: Contact Support Center
   footer:
     legal: Legal
@@ -361,21 +391,22 @@ en:
       signout: Sign out
   home_room: Home Room
   info_update_success: Information successfully updated.
+  login_required: Sign In is required to Buy a Package . If you do not have an account please Sign up to Selamta Chat.
   invalid_credentials: The email and password you entered did not match our records. Try again or click Forgot Password to reset your password.
   invalid_login_method: Login failed due to account mismatch. You need to log in with omniauth.
   invite_message: "To invite someone to the meeting, send them this link:"
   javascript:
     room:
       mailer:
-        subject: 'has invited you to view a recording.'
-        body: 'To view the recording, follow the link below:'
-        autogenerated: 'This e-mail is auto-generated by BigBlueButton.'
-        footer: 'BigBlueButton is an open source web conferencing system. For more information on BigBlueButton, see https://bigbluebutton.org/.'
+        subject: "has invited you to view a recording."
+        body: "To view the recording, follow the link below:"
+        autogenerated: "This e-mail is auto-generated by BigBlueButton."
+        footer: "BigBlueButton is an open source web conferencing system. For more information on BigBlueButton, see https://bigbluebutton.org/."
     search:
       start: Start searching...
   landing:
     about: "%{href} is a simple <b>Video Conferencing Platform</b>. You can create your own rooms to host sessions, or join others using a short and convenient link."
-    welcome: Selamta Chat 
+    welcome: Selamta Chat
     video: Watch our tutorial on using Selamta Chat
     upgrade: Show me how to upgrade to 2.0!
     version: We've released a new version of Greenlight, but your database isn't compatible.
@@ -414,9 +445,9 @@ en:
         subject: Invitation to join BigBlueButton
         username: Your username is %{email}.
       password_reset:
-        title: 'Password reset'
+        title: "Password reset"
         welcome: A password reset has been requested for the email <b>%{email}</b>
-        message: 'If you requested this reset, then please click the link below to reset your password:'
+        message: "If you requested this reset, then please click the link below to reset your password:"
         reset_link: Reset Password
         expire: This link will expire in two hours.
         ignore: You can safely ignore this email if you did not make this request.
@@ -430,7 +461,7 @@ en:
         success: Leveraging %{bigbluebutton}, you can create your own rooms to host sessions and collaborate with others.
         username: Your username is %{email}.
         verify: To verify your account, just click the button below.
-        verify_text: 'To verify your account, just follow this link: %{url}'
+        verify_text: "To verify your account, just follow this link: %{url}"
         verify_link: Verify Account
         thanks: Thanks for joining and have a great day!
   maintenance:
@@ -555,7 +586,7 @@ en:
       fail: Your account has not been approved yet. If multiples days have passed since you signed up, please contact your administrator.
       signup: Your account was successfully created. It has been sent to an administrator for approval.
     banned:
-      fail: You do not have access to this application. If you believe this is a mistake, please contact your administrator. 
+      fail: You do not have access to this application. If you believe this is a mistake, please contact your administrator.
     deprecated:
       new_signin: Select a new login method for you account. All your rooms from your old account will be migrated to the new account
       twitter_signin: Signing in via Twitter has been deprecated and will be removed in the next release. Click <a href="%{link}"> here </a> to move your account to a new authentication method

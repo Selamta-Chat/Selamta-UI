@@ -1,0 +1,170 @@
+<div class="row feature-stamp justify-content-center">
+    <div>
+        <h1>Package Detail</h1>
+    </div>
+</div>
+
+<div class="row feature-stamp justify-content-center">
+    <div class="card mr-3" style="width: 70rem; height: 35rem;">
+
+        <div class="pl-6">
+            <h1>Order for Package </h1>
+        </div>
+
+
+        <div class="card-body">
+
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:status).nil? %>
+                <h4> <%= t("package.status") %> : <%= params[:package][:status]%> </h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:item_name).nil? %>
+                <h4> <%= t("package.item_name") %> : <%= params[:package][:item_name]%> </h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:unit_price).nil? %>
+                <h4> <%= t("package.unit_price") %> : <%= params[:package][:unit_price]%> Months</h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:quantity).nil? %>
+                <h4> <%= t("package.bill_cycle") %> : <%=  package_selected_cycle(params[:package][:quantity]) %> </h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:discount).nil? %>
+                <h4> <%= t("package.discount") %> : <%= params[:package][:discount]%> </h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:vat).nil? %>
+                <h4> <%= t("package.vat") %> : <%= params[:package][:vat]%> </h4>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:start_date).nil? %>
+                <% if package_date_exists(params[:package][:start_date]) %>
+                <% start_date_year = params[:package][:start_date].split('T')[0].split('-')[0] %>
+                <% start_date_month = params[:package][:start_date].split('T')[0].split('-')[1] %>
+                <% start_date_day = params[:package][:start_date].split('T')[0].split('-')[2] %>
+                <h4><%= t("Start Date") %> : <%= start_date_day + "-" +  start_date_month+ "-" + start_date_year %> </h4>
+                <% else %>
+                <h4><%= t("Start Date") %> : <%= "-" + "-"   %> </h4>
+                <% end %>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:end_date).nil? %>
+                <% if package_date_exists(params[:package][:end_date]) %>
+                <% end_date_year = params[:package][:end_date].split('T')[0].split('-')[0] %>
+                <% end_date_month = params[:package][:end_date].split('T')[0].split('-')[1] %>
+                <% end_date_day = params[:package][:end_date].split('T')[0].split('-')[2] %>
+                <h4><%= t("End Date") %> : <%= end_date_day + "-" +  end_date_month+ "-" + end_date_year %></h4>
+                <% else %>
+                <h4><%= t("End Date") %> : <%= "-" + "-"   %> </h4>
+                <% end %>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:transaction_code).nil? %>
+                <% if package_transaction_exists(params[:package][:transaction_code]) %>
+                <h4> <%= t("package.transaction_code") %> : <%= params[:package][:transaction_code]%> </h4>
+                <% else %>
+                <h4><%= t("package.transaction_code") %> : <%= "-" + "-"   %> </h4>
+                <% end %>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:currency).nil? %>
+                <% if package_currency_exists(params[:package][:currency]) %>
+                <h4>Payment <%=  t("package.currency") %> : <%= params[:package][:currency]%> </h4>
+                <% else %>
+                <h4><%= t("package.currency") %> : <%= "ETB"   %> </h4>
+                <% end %>
+                <% end %>
+            </div>
+
+            <div class="row">
+                <span class="pr-2">
+                    <i class="fas fa-check"></i>
+                </span>
+                <%unless  params.dig(:package,:merchant_order_id).nil? %>
+                <h4> <%= t("package.merchant_order_id") %> : <%= params[:package][:merchant_order_id]%> </h4>
+                <% end %>
+            </div>
+
+            <% unless params.dig(:package,:merchant_order_id).nil?%>
+            <% if params[:package][:status] == 'NEW'%>
+            <div class="row">
+
+                <%= link_to "https://www.yenepay.com/" , target: "_blank", :class => "btn btn-outline-primary mx-2 sign-in-button"  do%>
+                <h4><%= t("package.pay_route") %> </h4>
+                <% end %>
+
+                <%= link_to t("package.cancel"), cancel_package_path(:cancel => params[:package][:merchant_order_id]), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+
+
+            </div>
+            <% end %>
+            <% end %>
+
+
+            <div class="row pt-6">
+                <% unless params.dig(:package,:merchant_order_id).nil?%>
+                <% if params[:package][:status] == 'SUCCESS'%>
+                <h4><%= t("package.upgrade_package") %> </h4>
+                <!-- Make Sure the Upgrade Package is changed to a Link that leads to Selamta Contact Center -->
+                <!-- Set the Contact Us Path here in the Future-->
+                <%= link_to t("Contact Us"), cancel_package_path(:cancel => params[:package][:merchant_order_id]), :class => "pl-2" %>
+                <% end %>
+                <% end %>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_150518) do
+ActiveRecord::Schema.define(version: 2020_10_03_161853) do
 
   create_table "features", force: :cascade do |t|
     t.integer "setting_id"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 2020_04_13_150518) do
     t.datetime "updated_at", null: false
     t.index ["invite_token"], name: "index_invitations_on_invite_token"
     t.index ["provider"], name: "index_invitations_on_provider"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "role_permissions", force: :cascade do |t|
