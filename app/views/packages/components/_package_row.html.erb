@@ -1,8 +1,12 @@
  <tr class="room-block">
      <td>
          <div id="room-title" class="edit_hover_class">
-             <% if package["user_id"] == current_user.uid %>
+             <% if package["item_name"] == "Enterprise" %>
+             <i class="fas fa-building pr-1"></i>
+             <% elsif package["item_name"] == "Business" %>
              <i class="fas fa-home pr-1"></i>
+             <% elsif package["item_name"] == "Professional" %>
+             <i class="fas fa-user-friends pr-1"></i>
              <% end %>
              <span class="room-name-text" title="<%= package["item_name"] %>">
                  <%= package["item_name"] %>
