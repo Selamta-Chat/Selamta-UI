@@ -37,7 +37,7 @@ module Authenticator
 
   # If email verification is disabled, or the user has verified, go to their room
   def check_email_verified(user)
-    if defined?(session_params) && (session_params[:package] === '1' || session_params[:package] === '2' || session_params[:package] === '3')
+    if defined?(session_params) && (session_params[:package] === '1' || session_params[:package] === '2' || session_params[:package] === '3' || session_params[:package] === '4')
       logger.info ("SHOW DEFAULT PACKAGE #{session_params[:package]} #{session_params[:package]=== '1'}") 
       return redirect_to create_package_path packages: session_params[:package]
       end

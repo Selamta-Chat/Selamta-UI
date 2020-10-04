@@ -304,6 +304,7 @@ en:
 
   package:
     name: Package Name
+    package: Packages
     status: Status
     start: Start date
     end: End date
@@ -317,7 +318,8 @@ en:
     cancel: Cancel
     bill_cycle: Bill Cycle
     package_subscription: Subscribed Package
-    flash_new: You already have a New package in process, If you wish to Buy a new package please delete the Existing Package
+    select_package: There is No Package selected. Please Select a Package.
+    flash_new: You already have a New package in process, If you wish to Buy a new package please cancel the Existing Package
   pricing:
     title: Pricing
     basic: Basic
@@ -329,6 +331,8 @@ en:
     free_cloud: has No storage Capability
     free_rooms: has One Home Room
     free_webcast: can not host No webcast
+    free_try_now: Try Now
+    free_try_signin: Try for Free
 
     number_participants: "%{number} Participants per Meeting"
     cloud_storage: "%{number}GB Cloud Storage "

@@ -19,9 +19,9 @@
 Rails.application.routes.draw do
   # Package resouces
   #resources :packages, only: [:new]
-  get "packages/new", to: "packages#new", as: :new_package
+  get "packages/new", to: "packages#new", as: :new_package, param: :packages
   get "packages/create", to: "packages#create", as: :create_package
-  get "packages/delete", to: "packages#delete", as: :test_package
+  get "packages/pay", to: "packages#pay", as: :pay_package
   get "packages/show", to: "packages#show", as: :show_package, via: [:get]
   post "packages/show", to: "packages#show", as: :cancel_package, param: :cancel
   post "packages/create", to: "packages#set_bill_cycle", as: :set_bill_cycle, param: :packages

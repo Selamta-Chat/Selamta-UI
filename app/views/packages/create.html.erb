@@ -1,7 +1,13 @@
-<h1>Packages Page</h1> 
-<% package_id = params[:packages] %> 
-<%= render "packages/components/ent_package" %> 
- 
-<%= render "packages/components/all_packages", packages: @packages, pagy: @pagy, title: t("room.recordings")%>
- 
+<h1>Packages Page</h1>
+<%= package_id = params[:packages] %>
+<% if package_id = params[:packages] == "1" %>
+<%= render "packages/components/ent_package" %>
+<% elsif package_id = params[:packages] == "2"  %>
+<%= render "packages/components/bus_package" %>
+<% elsif package_id = params[:packages] == "3"  %>
+<%= render "packages/components/pro_package" %>
+<% else  %>
+<%= render "main/components/pricing" %>
+<% end %>
 
+<%= render "packages/components/all_packages", packages: @packages, pagy: @pagy, title: t("room.recordings")%>

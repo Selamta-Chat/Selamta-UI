@@ -148,9 +148,12 @@
                     <p class="ml-2">
                         <%= t("pricing.support") %></p>
                 </div>
-              
-               <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
 
+                <% if current_user %>
+                <%= link_to t("Buy"), new_package_path(:package => 1), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <% else%>
+                <%= link_to t("Buy"), signin_path(:package => 1), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <%end%>
             </div>
         </div>
 
@@ -282,9 +285,13 @@
                     <p class="ml-2">
                         <%= t("pricing.support") %></p>
                 </div>
- 
-             <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
 
+
+                <% if current_user %>
+                <%= link_to t("Buy"), new_package_path(:package => 2), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <% else%>
+                <%= link_to t("Buy"), signin_path(:package => 2), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <%end%>
             </div>
         </div>
 
@@ -416,12 +423,17 @@
                     <p class="ml-2">
                         <%= t("pricing.support") %></p>
                 </div>
-             <%= link_to t("Buy"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
 
+                <% if current_user %>
+                <%= link_to t("Buy"), new_package_path(:package => 3), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <% else%>
+                <%= link_to t("Buy"), signin_path(:package => 3), :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <%end%>
             </div>
         </div>
 
         <!-- Free Package -->
+
         <div class="card mr-3" style="width: 18rem;">
             <span class="stamp bg-primary"><i class="fas fa-gift fa-8x"></i></span>
             <div class="card-body">
@@ -550,8 +562,12 @@
                         <%= t("pricing.support") %></p>
                 </div>
 
-             <%= link_to t("Try for Free"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
 
+                <% if current_user %>
+                <%= link_to t("pricing.free_try_now"), root_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <% else%>
+                <%= link_to t("pricing.free_try_signin"), signin_path, :class => "btn btn-outline-primary btn-lg btn-block mx-2 buy-button" %>
+                <%end%>
             </div>
         </div>
 

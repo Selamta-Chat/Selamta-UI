@@ -38,7 +38,7 @@
                     <i class="fas fa-check"></i>
                 </span>
                 <%unless  params.dig(:package,:unit_price).nil? %>
-                <h4> <%= t("package.unit_price") %> : <%= params[:package][:unit_price]%> Months</h4>
+                <h4> <%= t("package.unit_price") %> : <%= params[:package][:unit_price]%> per Month</h4>
                 <% end %>
             </div>
 
@@ -158,7 +158,7 @@
                 <h4><%= t("package.upgrade_package") %> </h4>
                 <!-- Make Sure the Upgrade Package is changed to a Link that leads to Selamta Contact Center -->
                 <!-- Set the Contact Us Path here in the Future-->
-                <%= link_to t("Contact Us"), cancel_package_path(:cancel => params[:package][:merchant_order_id]), :class => "pl-2" %>
+                <%= link_to t("Contact Us"), cancel_package_path(:cancel => params[:package][:package]), :class => "pl-2" %>
                 <% end %>
                 <% end %>
             </div>
