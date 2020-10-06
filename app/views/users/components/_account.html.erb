@@ -14,24 +14,24 @@
 %>
 
 <%= form_for @user, url: update_user_path, method: :post do |f|  %>
-  <%= hidden_field_tag :setting, "account" %>
-  <div class="form-group">
+<%= hidden_field_tag :setting, "account" %>
+<div class="form-group">
     <div class="row">
-      <div class="col-sm-6 mb-4">
-        <%= f.label :name, t("settings.account.fullname"), class: "form-label" %>
-        <div class="input-icon">
-          <%= f.text_field :name, class: "form-control #{form_is_invalid?(@user, :name)}", placeholder: t("settings.account.fullname"), readonly: !@user.greenlight_account? %>
+        <div class="col-sm-6 mb-4">
+            <%= f.label :name, t("settings.account.fullname"), class: "form-label" %>
+            <div class="input-icon">
+                <%= f.text_field :name, class: "form-control #{form_is_invalid?(@user, :name)}", placeholder: t("settings.account.fullname"), readonly: !@user.greenlight_account? %>
+            </div>
         </div>
-      </div>
 
-      <div class="col-sm-6 mb-4">
-        <%= f.label :email, t("email"), class: "form-label" %>
-        <div class="input-icon">
-          <%= f.email_field :email, class: "form-control #{form_is_invalid?(@user, :email)}", placeholder: t("email"), readonly: !@user.greenlight_account? %>
+        <div class="col-sm-6 mb-4">
+            <%= f.label :email, t("email"), class: "form-label" %>
+            <div class="input-icon">
+                <%= f.email_field :email, class: "form-control #{form_is_invalid?(@user, :email)}", placeholder: t("email"), readonly: !@user.greenlight_account? %>
+            </div>
         </div>
-      </div>
     </div>
-    
+
     <%= f.label :provider, t("settings.account.provider"), class: "form-label" %>
     <%= f.text_field :provider, class: "form-control", readonly: "" %>
     <br>
@@ -40,38 +40,41 @@
 
     <%= f.label :roles, t("settings.account.roles"), class: "form-label mt-5" %>
     <% if current_user.role.get_permission("can_manage_users") %>
-      <select id="role-dropdown" class="selectpicker show-tick" >
+    <select id="role-dropdown" class="selectpicker show-tick">
         <% role_options.each do |role| %>
-          <option value="<%=role.id%>"><%= translated_role_name(role) %></option>
+        <option value="<%=role.id%>"><%= translated_role_name(role) %></option>
         <% end %>
-      </select>
+    </select>
 
-      <%= f.hidden_field :role_id, id: "user_role_id", value: @user.role.id %>
+    <%= f.hidden_field :role_id, id: "user_role_id", value: @user.role.id %>
     <% else %>
-      <span style="<%= "background-color: #{role_colour(@user.role)};border-color: #{role_colour(@user.role)};" %>" class="tag custom-role-tag">
+    <span style="<%= "background-color: #{role_colour(@user.role)};border-color: #{role_colour(@user.role)};" %>" class="tag custom-role-tag">
         <%= translated_role_name(@user.role) %>
-      </span>
+    </span>
     <% end %>
+    <br>
+    <%= f.label :language, t("package.package_subscription"), class: "form-label" %>
+    <span class="mt-2 pt-2 primary" style="color: green;"> <b> <%= @subscribed_package["item_name"] %> </b> </span>
 
     <%= f.label :image, t("settings.account.image"), class: "form-label mt-5" %>
     <div class="row">
-      <div class="col-5 col-sm-2">
-        <% if @user.image.blank? || !valid_url?(@user.image) %>
-          <span class="avatar avatar-xxl mr-5 mt-2 bg-primary"><%= @user.name.first %></span>
-        <% else %>
-          <%= image_tag(@user.image, class: "avatar avatar-xxl mr-5 mt-2") %>
-        <% end %>
-      </div>
-      <div class="col-7 col-sm-10 mt-5">
-        <%= f.text_field :image, class: "form-control #{form_is_invalid?(@user, :image)}", placeholder: t("settings.account.image_url") %>
-      </div>
+        <div class="col-5 col-sm-2">
+            <% if @user.image.blank? || !valid_url?(@user.image) %>
+            <span class="avatar avatar-xxl mr-5 mt-2 bg-primary"><%= @user.name.first %></span>
+            <% else %>
+            <%= image_tag(@user.image, class: "avatar avatar-xxl mr-5 mt-2") %>
+            <% end %>
+        </div>
+        <div class="col-7 col-sm-10 mt-5">
+            <%= f.text_field :image, class: "form-control #{form_is_invalid?(@user, :image)}", placeholder: t("settings.account.image_url") %>
+        </div>
     </div>
-  </div>
-  <div class="card-footer">
+</div>
+<div class="card-footer">
     <%= f.submit t("update"), class: "btn btn-primary float-right ml-4" %>
 
     <% if can_reset_password %>
-      <%= link_to t("settings.account.reset_password"), admin_reset_path(user_uid: @user.uid), class: "btn btn-primary float-right" %>
+    <%= link_to t("settings.account.reset_password"), admin_reset_path(user_uid: @user.uid), class: "btn btn-primary float-right" %>
     <% end %>
-  </div>
+</div>
 <% end %>

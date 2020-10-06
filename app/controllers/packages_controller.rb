@@ -42,8 +42,8 @@ class PackagesController < ApplicationController
                                  "Content-Type" => "application/json",
                                  "user_id" => "#{current_user.uid}",
                                })
-    @load_state = false
-    @pagy, @packages = pagy_array(allPayments.to_a, page: 1, items: 10)
+    
+    @pagy, @packages = pagy_array(allPayments.to_a, page: 1, items: 5)
   end
 
   # This is actually the payment package change def name to payment_New

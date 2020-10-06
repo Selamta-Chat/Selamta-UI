@@ -41,6 +41,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+   # The Subscribed Package for the current user 
+   def subscribed_package 
+    # Call the Subscribed package by the User here for profile
+    if @current_user
+      @subscribed_package = HTTParty.get("http://localhost:3030/api/packages/subscribed/#{@current_user.uid}",
+                                         :headers => {
+                                           "Content-Type" => "application/json",
+                                           "user_id" => "#{@current_user.uid}",
+                                         })
+      logger.info "APP Called ==> #{@subscribed_package}"
+    end
+  end
+  helper_method :subscribed_package
+
   def bbb_server
     @bbb_server ||= Rails.configuration.loadbalanced_configuration ? bbb(@user_domain) : bbb("greenlight")
   end

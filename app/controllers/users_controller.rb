@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       @user.set_role :pending
 
       return redirect_to root_path,
-        flash: { success: I18n.t("registration.approval.signup") } unless Rails.configuration.enable_email_verification
+                         flash: { success: I18n.t("registration.approval.signup") } unless Rails.configuration.enable_email_verification
     end
 
     send_registration_email
@@ -69,6 +69,8 @@ class UsersController < ApplicationController
 
   # GET /u/:user_uid/edit
   def edit
+    # call the Subscribed package to be fetched from the Selamta Pay
+    subscribed_package
     redirect_to root_path unless current_user
   end
 
@@ -130,7 +132,7 @@ class UsersController < ApplicationController
 
     # Notify the user that their account has been updated.
     return redirect_to change_password_path,
-      flash: { success: I18n.t("info_update_success") } if @user.errors.empty? && @user.save
+                       flash: { success: I18n.t("info_update_success") } if @user.errors.empty? && @user.save
 
     # redirect_to change_password_path
     render :change_password
@@ -189,7 +191,7 @@ class UsersController < ApplicationController
 
   # GET | POST /terms
   def terms
-    redirect_to '/404' unless Rails.configuration.terms
+    redirect_to "/404" unless Rails.configuration.terms
 
     if params[:accept] == "true"
       current_user.update_attributes(accepted_terms: true)
@@ -210,7 +212,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :image, :password, :password_confirmation,
-      :new_password, :provider, :accepted_terms, :language)
+                                 :new_password, :provider, :accepted_terms, :language)
   end
 
   def send_registration_email
