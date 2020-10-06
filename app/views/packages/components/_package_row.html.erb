@@ -16,9 +16,15 @@
 
      <td>
          <div id="room-title" class="edit_hover_class">
-             <span style="background-color: lightgreen;" class="room-name-text" title="<%= package["status"] %>">
+             <% if package["status"] == "SUCCESS"%>
+             <span style="color: green;" class="room-name-text" title="<%= package["status"] %>">
                  <%= package["status"] %>
              </span>
+             <% else %>
+             <span style="color: blue;" class="room-name-text" title="<%= package["status"] %>">
+                 <%= package["status"] %>
+             </span>
+             <% end %>
          </div>
      </td>
 
