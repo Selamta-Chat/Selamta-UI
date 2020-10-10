@@ -24,13 +24,13 @@ class RoomsController < ApplicationController
 
   before_action :validate_accepted_terms, unless: -> { !Rails.configuration.terms }
   before_action :validate_verified_email, except: [:show, :join],
-                unless: -> { !Rails.configuration.enable_email_verification }
+                                          unless: -> { !Rails.configuration.enable_email_verification }
   before_action :find_room, except: [:create, :join_specific_room, :cant_create_rooms]
   before_action :verify_room_ownership_or_admin_or_shared, only: [:start, :shared_access]
   before_action :verify_room_ownership_or_admin, only: [:update_settings, :destroy]
   before_action :verify_room_ownership_or_shared, only: [:remove_shared_access]
   before_action :verify_room_owner_verified, only: [:show, :join],
-                unless: -> { !Rails.configuration.enable_email_verification }
+                                             unless: -> { !Rails.configuration.enable_email_verification }
   before_action :verify_room_owner_valid, only: [:show, :join]
   before_action :verify_user_not_admin, only: [:show]
 
@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
 
     # Redirect to room is auto join was not turned on
     return redirect_to @room,
-      flash: { success: I18n.t("room.create_room_success") } unless room_params[:auto_join] == "1"
+                       flash: { success: I18n.t("room.create_room_success") } unless room_params[:auto_join] == "1"
 
     # Start the room if auto join was turned on
     start
@@ -62,6 +62,15 @@ class RoomsController < ApplicationController
 
   # GET /:room_uid
   def show
+    # Call the Subscribed package for Room
+    if @current_user
+      @subscribed_package = HTTParty.get("http://localhost:3030/api/packages/subscribed/#{@current_user.uid}",
+                                         :headers => {
+                                           "Content-Type" => "application/json",
+                                           "user_id" => "#{@current_user.uid}",
+                                         })
+    end
+
     @room_settings = @room[:room_settings]
     @anyone_can_start = room_setting_with_config("anyoneCanStart")
     @room_running = room_running?(@room.bbb_id)
@@ -99,7 +108,7 @@ class RoomsController < ApplicationController
   # POST /:room_uid
   def join
     return redirect_to root_path,
-      flash: { alert: I18n.t("administrator.site_settings.authentication.user-info") } if auth_required
+                       flash: { alert: I18n.t("administrator.site_settings.authentication.user-info") } if auth_required
 
     @shared_room = room_shared_with_user
 
@@ -148,7 +157,7 @@ class RoomsController < ApplicationController
 
   # POST /room/join
   def join_specific_room
-    room_uid = params[:join_room][:url].split('/').last
+    room_uid = params[:join_room][:url].split("/").last
 
     begin
       @room = Room.find_by!(uid: room_uid)
@@ -197,7 +206,7 @@ class RoomsController < ApplicationController
       @room.update_attributes(
         name: options[:name],
         room_settings: room_settings_string,
-        access_code: options[:access_code]
+        access_code: options[:access_code],
       )
 
       flash[:success] = I18n.t("room.update_settings_success")
@@ -268,7 +277,7 @@ class RoomsController < ApplicationController
 
   # GET /:room_uid/logout
   def logout
-    logger.info "Support: #{current_user.present? ? current_user.email : 'Guest'} has left room #{@room.uid}"
+    logger.info "Support: #{current_user.present? ? current_user.email : "Guest"} has left room #{@room.uid}"
 
     # Redirect the correct page.
     redirect_to @room
@@ -298,7 +307,7 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :auto_join, :mute_on_join, :access_code,
-      :require_moderator_approval, :anyone_can_start, :all_join_moderator)
+                                 :require_moderator_approval, :anyone_can_start, :all_join_moderator)
   end
 
   # Find the room from the uid.
@@ -321,7 +330,7 @@ class RoomsController < ApplicationController
 
   # Ensure the user owns the room or is allowed to start it
   def verify_room_ownership_or_shared
-   return redirect_to root_path unless @room.owned_by?(current_user) || room_shared_with_user
+    return redirect_to root_path unless @room.owned_by?(current_user) || room_shared_with_user
   end
 
   def validate_accepted_terms
@@ -363,5 +372,6 @@ class RoomsController < ApplicationController
 
     current_user.rooms.length >= limit
   end
+
   helper_method :room_limit_exceeded
 end
