@@ -132,6 +132,7 @@ Rails.application.routes.draw do
   scope "/:room_uid" do
     post "/", to: "rooms#join"
     patch "/", to: "rooms#update", as: :update_room
+    get "/", to: "rooms#delete", as: :delete_room
     get "/room_settings", to: "rooms#room_settings"
     post "/update_settings", to: "rooms#update_settings"
     post "/update_shared_access", to: "rooms#shared_access", as: :room_shared_access

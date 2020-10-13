@@ -14,30 +14,30 @@
 %>
 
 <div class="modal fade" id="deleteRoomModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content text-center">
-      <div class="modal-body">
-        <div class="card-body p-6">
-          <div class="card-title">
-            <h3 id="delete-header"></h3>
-          </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-body">
+                <div class="card-body p-6">
+                    <div class="card-title">
+                        <h3 id="delete-header">
+                         <%= t("modal.delete_room.confirm", room: @room[:name])  %>
+                        </h3>
+                    </div>
 
-          <button type="button" class="btn btn-info my-1 btn-del-room" data-dismiss="modal">
-            <%= t("modal.delete_room.keep") %>
-          </button>
-
-          <%= button_to "/", method: :delete, id: "delete-confirm", class: "btn btn-danger my-1 btn-del-room", "data-disable": "" do %>
-            <%= t("modal.delete_room.delete") %>
-          <% end %>
-
+                    <button type="button" class="btn btn-info my-1 btn-del-room" data-dismiss="modal">
+                        <%= t("modal.delete_room.keep") %>
+                    </button>
+ 
+                   
+                    <%= link_to t("modal.delete_room.delete"), delete_room_path(:room_uid => params[:room_uid], :delete => params[:room_uid]), class: "btn btn-danger my-1 btn-del-room" %>
+                </div>
+                <div class="card-footer">
+                    <p id="delete-footer">
+                        <%= t("modal.delete_room.warning").html_safe %>
+                        <%= t("modal.delete_room.recording_warning", recordings_num:"").html_safe %>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="card-footer">
-          <p id="delete-footer">
-            <%= t("modal.delete_room.warning").html_safe %>
-            <%= t("modal.delete_room.recording_warning", recordings_num:"").html_safe %>
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

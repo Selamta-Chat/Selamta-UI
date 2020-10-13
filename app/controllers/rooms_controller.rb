@@ -62,6 +62,11 @@ class RoomsController < ApplicationController
 
   # GET /:room_uid
   def show
+
+    # If Deleting is in progress
+    if params.has_key?(:delete)
+      destroy
+    end
     # Call the Subscribed package for Room
     if @current_user
       @subscribed_package = HTTParty.get("http://localhost:3030/api/packages/subscribed/#{@current_user.uid}",
@@ -134,6 +139,10 @@ class RoomsController < ApplicationController
 
     logger.info "Support: #{current_user.present? ? current_user.email : @join_name} is joining room #{@room.uid}"
     join_room(default_meeting_options)
+  end
+
+  # define the room UID to delete here for Destroy from the passed parameter 
+  def delete
   end
 
   # DELETE /:room_uid
