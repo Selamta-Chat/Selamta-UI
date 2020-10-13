@@ -42,25 +42,22 @@ module RoomsHelper
     @settings.get_value(name)
   end
 
-  def room_create_display(subscribed)
-    # The Number of rooms allowed to be created per subscription
-
-    if current_user.ordered_rooms.length == 15 && subscribed == "Enterprise"
-      return false
-    else
-      return true
+  def room_create_display(subscribed,rooms)
+    # The Number of rooms allowed to be created per subscription current_user.ordered_rooms.length >= 3 && subscribed == "Professional"
+ 
+    if rooms == 15 && subscribed == "Enterprise"
+      return false 
     end
 
-    if current_user.ordered_rooms.length == 5 && subscribed == "Business"
-      return false
-    else
-      return true
+    if rooms == 5 && subscribed == "Business"
+      return false 
     end
 
-    if current_user.ordered_rooms.length == 3 && subscribed == "Professional"
-      return false
-    else
-      return true
+    if rooms == 3 && subscribed == "Professional"
+      return false 
     end
+
+    #Default show create room
+    return true
   end
 end

@@ -96,8 +96,9 @@
             </div>
             <% end %>
             <% end %>
-
-            <% if current_user.role.get_permission("can_create_rooms") && !room_limit_exceeded  && room_create_display(@subscribed_package["item_name"])%>
+            <h2> <%= @subscribed_package["item_name"]  %> </h2>
+             <h2> <%= current_user.ordered_rooms.length %> </h2>
+            <% if current_user.role.get_permission("can_create_rooms") && !room_limit_exceeded  && room_create_display(@subscribed_package["item_name"], current_user.ordered_rooms.length)%>
             <%= render "rooms/components/create_room_block"%>
             <% end %>
         </div>
