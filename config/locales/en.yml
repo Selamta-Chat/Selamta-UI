@@ -156,6 +156,9 @@ en:
         optional: Optional
     rooms:
       title: Server Rooms
+      disallow_start: > 
+        You have exceeded the number of rooms allowed for your package subscription. Please select and Delete *** %{rooms} Room(s) *** to be able to start Meetings! 
+        Or Contact Selamta Chat for Package Upgrade
       table:
         ended: "Ended: %{session}"
         id: ID
