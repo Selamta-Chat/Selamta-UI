@@ -67,7 +67,7 @@ class RoomsController < ApplicationController
     if params.has_key?(:delete)
       destroy
     end
-    # Call the Subscribed package when SHOW Room
+    # Call the Subscribed package for Room
     if @current_user
       @subscribed_package = HTTParty.get("http://localhost:3030/api/packages/subscribed/#{@current_user.uid}",
                                          :headers => {
@@ -141,7 +141,7 @@ class RoomsController < ApplicationController
     join_room(default_meeting_options)
   end
 
-  # define the room UID to delete here for Destroy from the passed parameter
+  # define the room UID to delete here for Destroy from the passed parameter 
   def delete
   end
 
@@ -210,41 +210,27 @@ class RoomsController < ApplicationController
   # POST /:room_uid/start
   def start
     logger.info "Support: #{current_user.email} is starting room #{@room.uid}"
-    # Call the Subscribed package When START Room MEETING
-    if @current_user
-      @subscribed_package = HTTParty.get("http://localhost:3030/api/packages/subscribed/#{@current_user.uid}",
-                                         :headers => {
-                                           "Content-Type" => "application/json",
-                                           "user_id" => "#{@current_user.uid}",
-                                         })
+
+    # Join the user in and start the meeting.
+    opts = default_meeting_options
+    opts[:user_is_moderator] = true
+
+    # Include the user's choices for the room settings
+    @room_settings = JSON.parse(@room[:room_settings])
+    opts[:mute_on_start] = room_setting_with_config("muteOnStart")
+    opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
+
+    begin
+      redirect_to join_path(@room, current_user.name, opts, current_user.uid)
+    rescue BigBlueButton::BigBlueButtonException => e
+      logger.error("Support: #{@room.uid} start failed: #{e}")
+
+      redirect_to room_path, alert: I18n.t(e.key.to_s.underscore, default: I18n.t("bigbluebutton_exception"))
     end
-    logger.info "START CHECK ==> #{@subscribed_package}"
-    logger.info "START CHECK PACK ==> #{@subscribed_package["item_name"]}"
-    logger.info "START CHECK ROLEN==> #{current_user.ordered_rooms.length}"
-    check_user_can_start(@subscribed_package["item_name"], current_user.ordered_rooms.length)
-    logger.info "END CHECK ==> #{$can_start}"
-    if $can_start
-      # Join the user in and start the meeting.
-      opts = default_meeting_options
-      opts[:user_is_moderator] = true
 
-      # Include the user's choices for the room settings
-      @room_settings = JSON.parse(@room[:room_settings])
-      opts[:mute_on_start] = room_setting_with_config("muteOnStart")
-      opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
-
-      begin
-        redirect_to join_path(@room, current_user.name, opts, current_user.uid)
-      rescue BigBlueButton::BigBlueButtonException => e
-        logger.error("Support: #{@room.uid} start failed: #{e}")
-
-        redirect_to room_path, alert: I18n.t(e.key.to_s.underscore, default: I18n.t("bigbluebutton_exception"))
-      end
-
-      # Notify users that the room has started.
-      # Delay 5 seconds to allow for server start, although the request will retry until it succeeds.
-      NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
-    end
+    # Notify users that the room has started.
+    # Delay 5 seconds to allow for server start, although the request will retry until it succeeds.
+    NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
   end
 
   # POST /:room_uid/update_settings
