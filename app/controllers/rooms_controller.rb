@@ -190,7 +190,7 @@ class RoomsController < ApplicationController
       $can_start = true
       return true
     end
-
+ 
     if rooms > 5 && subscribed == "Business"
       delete = rooms - 5
       $can_start = false
