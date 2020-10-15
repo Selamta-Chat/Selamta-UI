@@ -112,6 +112,7 @@ class RoomsController < ApplicationController
 
   # POST /:room_uid
   def join
+    
     return redirect_to root_path,
                        flash: { alert: I18n.t("administrator.site_settings.authentication.user-info") } if auth_required
 
@@ -218,21 +219,25 @@ class RoomsController < ApplicationController
                                            "user_id" => "#{@current_user.uid}",
                                          })
     end
-    logger.info "START CHECK ==> #{@subscribed_package}"
-    logger.info "START CHECK PACK ==> #{@subscribed_package["item_name"]}"
-    logger.info "START CHECK ROLEN==> #{current_user.ordered_rooms.length}"
+ 
+    logger.info "START CHECK PACK ==> #{@subscribed_package["item_name"]}" 
     check_user_can_start(@subscribed_package["item_name"], current_user.ordered_rooms.length)
-    logger.info "END CHECK ==> #{$can_start}"
+     
     if $can_start
       # Join the user in and start the meeting.
       opts = default_meeting_options
       opts[:user_is_moderator] = true
 
+      # Maximum Number of users allowed to joined conference at the same time based on Subscribed package
+      # TODO:: Change the Landing redirect URL when maximum users are reached 
+      # and a NEW user tries to Join the meeting it should not redirect to blindside but to selamta page 
+      opts[:max_participants] = set_maximum_participants(@subscribed_package["item_name"])
+
       # Include the user's choices for the room settings
       @room_settings = JSON.parse(@room[:room_settings])
       opts[:mute_on_start] = room_setting_with_config("muteOnStart")
       opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
-
+      logger.info "Room PATH==>#{opts}"
       begin
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       rescue BigBlueButton::BigBlueButtonException => e

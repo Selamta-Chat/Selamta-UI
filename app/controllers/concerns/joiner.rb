@@ -23,12 +23,12 @@ module Joiner
   def show_user_join
     # Get users name
     @name = if current_user
-      current_user.name
-    elsif cookies.encrypted[:greenlight_name]
-      cookies.encrypted[:greenlight_name]
-    else
-      ""
-    end
+        current_user.name
+      elsif cookies.encrypted[:greenlight_name]
+        cookies.encrypted[:greenlight_name]
+      else
+        ""
+      end
 
     @search, @order_column, @order_direction, pub_recs =
       public_recordings(@room.bbb_id, params.permit(:search, :column, :direction), true)
@@ -90,22 +90,34 @@ module Joiner
       meeting_recorded: true,
       moderator_message: "#{invite_msg}\n\n#{request.base_url + room_path(@room)}",
       host: request.host,
-      recording_default_visibility: @settings.get_value("Default Recording Visibility") == "public"
+      recording_default_visibility: @settings.get_value("Default Recording Visibility") == "public",
     }
+  end
+
+  # Set the Maximum Number of users allowed to joined conference at the same time based on Subscribed package
+  def set_maximum_participants(subscribed)
+    case subscribed
+    when "Enterprise"
+      return 50
+    when "Business"
+      return 20
+    when "Professional"
+      return 10
+    end
   end
 
   # Gets the room setting based on the option set in the room configuration
   def room_setting_with_config(name)
     config = case name
-    when "muteOnStart"
-      "Room Configuration Mute On Join"
-    when "requireModeratorApproval"
-      "Room Configuration Require Moderator"
-    when "joinModerator"
-      "Room Configuration All Join Moderator"
-    when "anyoneCanStart"
-      "Room Configuration Allow Any Start"
-    end
+      when "muteOnStart"
+        "Room Configuration Mute On Join"
+      when "requireModeratorApproval"
+        "Room Configuration Require Moderator"
+      when "joinModerator"
+        "Room Configuration All Join Moderator"
+      when "anyoneCanStart"
+        "Room Configuration Allow Any Start"
+      end
 
     case @settings.get_value(config)
     when "enabled"
@@ -126,7 +138,7 @@ module Joiner
 
     cookies[:guest_id] = {
       value: guest_id,
-      expires: 1.day.from_now
+      expires: 1.day.from_now,
     }
 
     guest_id

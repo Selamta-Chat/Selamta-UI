@@ -66,6 +66,7 @@ module BbbServer
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
+      maxParticipants: options[:max_participants],
       muteOnStart: options[:mute_on_start] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
@@ -74,7 +75,7 @@ module BbbServer
     }
 
     create_options[:guestPolicy] = "ASK_MODERATOR" if options[:require_moderator_approval]
-
+    logger.info "CREATE PATH==>#{create_options}"
     # Send the create request.
     begin
       meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
