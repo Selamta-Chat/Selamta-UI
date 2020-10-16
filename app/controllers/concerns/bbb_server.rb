@@ -68,6 +68,7 @@ module BbbServer
       moderatorOnlyMessage: options[:moderator_message],
       maxParticipants: options[:max_participants],
       muteOnStart: options[:mute_on_start] || false,
+      allowStartStopRecording: options[:allow_start_stop_recording],
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
       "meta_bbb-origin": "Greenlight",

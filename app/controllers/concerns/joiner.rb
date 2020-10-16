@@ -106,6 +106,29 @@ module Joiner
     end
   end
 
+  # allow / Disallow user recording capability based on the Package Subscription
+  def configure_start_stop_recording(subscribed, total_length)
+    @can_record = true
+    if subscribed == "Enterprise" && total_length > 55
+      # for Enterprise package 60 Minute Recording capability thus total length should be less than 55
+      @can_record = false
+      return @can_record
+    end
+
+    if subscribed == "Business" && total_length > 35
+      # for Business package 40 Minute Recording capability thus total length should be less than 35
+      @can_record = false
+      return @can_record
+    end
+
+    if subscribed == "Professional" && total_length > 15
+      # for Professional package 20 Minute Recording capability thus total length should be less than 15
+      @can_record = false
+      return @can_record
+    end
+    return @can_record
+  end
+
   # Gets the room setting based on the option set in the room configuration
   def room_setting_with_config(name)
     config = case name

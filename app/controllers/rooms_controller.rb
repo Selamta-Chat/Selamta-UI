@@ -88,7 +88,7 @@ class RoomsController < ApplicationController
         recordings(@room.bbb_id, params.permit(:search, :column, :direction), true)
 
       @user_list = shared_user_list if shared_access_allowed
-
+      
       @pagy, @recordings = pagy_array(recs)
     else
       return redirect_to root_path, flash: { alert: I18n.t("room.invalid_provider") } if incorrect_user_domain
@@ -233,6 +233,32 @@ class RoomsController < ApplicationController
       # and a NEW user tries to Join the meeting it should not redirect to blindside but to selamta page 
       opts[:max_participants] = set_maximum_participants(@subscribed_package["item_name"])
 
+      #  TODO:: Improve the Logic to be backend based on bbb-record and Not front end. This is Temporary solution
+      #  Starter Google Discussion => https://groups.google.com/g/bigbluebutton-users/c/jcOrxl0gfzo?pli=1 
+      #  User is allowed to record based if there is more than 5 minutes left in the allowed recording
+      #  Example :- Enterprise can record 60 Minutes thus we fetch all the Previous Recordings and add 
+      #  their total length if it is below 55 then allow to record. if not disable recording
+
+      @search, @order_column, @order_direction, recs =
+      all_recordings(current_user.rooms.pluck(:bbb_id), params.permit(:search, :column, :direction), true)
+      
+      @all_recordings = recs
+      logger.info "Get the Recording on Start==> #{@all_recordings}"
+
+      # Loop through Each Record and add their respective playback length and store their Sum
+      @total_recordings_length = 0
+      @all_recordings.each do |record|
+        logger.info "EACH REC ==> #{record}"
+        logger.info "EACH Playback ==> #{record[:playbacks]}"
+        record[:playbacks].each do |playback|
+          logger.info "EACH Playback LEN==> #{playback[:length]}"
+          @total_recordings_length = @total_recordings_length + playback[:length]
+        end
+       
+      end
+      logger.info "TOTAL REC ==> #{@total_recordings_length}"
+      # Using the Total Recording Length set Restriction here 
+      opts[:allow_start_stop_recording] = configure_start_stop_recording(@subscribed_package["item_name"],@total_recordings_length)
       # Include the user's choices for the room settings
       @room_settings = JSON.parse(@room[:room_settings])
       opts[:mute_on_start] = room_setting_with_config("muteOnStart")
