@@ -4,11 +4,9 @@ class PackagesController < ApplicationController
   #before_action :package_params, only: [:new]
 
   def show
-    logger.info "Detail PARAMS ==>#{params[:cancel]}"
 
     # if the Merchant order code is not empty send cancel request
     if params.has_key?(:cancel)
-      logger.info " CANECEL ==> #{current_user.uid}"
       cancelPackage = HTTParty.post("http://localhost:3030/api/packages/",
                                     {
         :headers => {
@@ -26,10 +24,9 @@ class PackagesController < ApplicationController
   end
 
   def new
-    logger.info "PARAMS #{params[:package]}"
     return redirect_to signin_path(:package => params[:package]),
                        flash: { info: I18n.t("login_required") } unless current_user
-    logger.info "Current User in package ==>showing ...}"
+
     if current_user
       return redirect_to create_package_path packages: params[:package]
     end
@@ -42,9 +39,8 @@ class PackagesController < ApplicationController
                                  "Content-Type" => "application/json",
                                  "user_id" => "#{current_user.uid}",
                                })
-    # Pass the pages from the parameter Set the items per table to be 5 
+    # Pass the pages from the parameter Set the items per table to be 5
     @pagy, @packages = pagy_array(allPayments.to_a, page: params["page"], items: 5)
-     
   end
 
   # This is actually the payment package change def name to payment_New
@@ -54,7 +50,6 @@ class PackagesController < ApplicationController
                                       "Content-Type" => "application/json",
                                     })
     newPaymentExists = JSON.parse(newPaymentExists.body)
-    logger.info "DELETEWEST==> #{newPaymentExists == false}"
 
     if newPaymentExists == false
       redirect_link
@@ -65,7 +60,7 @@ class PackagesController < ApplicationController
 
   def set_bill_cycle
     redirect_to create_package_path packages: params[:package], cycle: params[:value]
-    logger.info "BILLLL ...==> #{params}"
+
     # package_params[:cycle] = params[:value]
     #helpers.set_bill_cycle(cycle)
 
@@ -75,7 +70,6 @@ class PackagesController < ApplicationController
   # Determines the Payment Redirect Link
   def redirect_link
     if params.has_key?(:package)
-      logger.info "HAS Package Selected!!"
     else
       # A package MUST be selected to route to Selamta Pay
       flash[:alert] = I18n.t("package.select_package")
@@ -83,10 +77,8 @@ class PackagesController < ApplicationController
     end
 
     if params.has_key?(:cycle)
-      logger.info "HAS CYCLE #{params.has_key?(:cycle)}"
       redirect_to "http://localhost:3030/index?package=#{params[:package]}&cycle=#{params[:cycle]}&uid=#{params[:uid]}"
     else
-      logger.info "NO CYCLE #{params.has_key?(:cycle)}"
       redirect_to "http://localhost:3030/index?package=#{params[:package]}&cycle=1&uid=#{params[:uid]}"
     end
   end

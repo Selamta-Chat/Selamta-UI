@@ -37,18 +37,10 @@ module Authenticator
 
   # If email verification is disabled, or the user has verified, go to their room
   def check_email_verified(user)
-    if defined?(session_params) && (session_params[:package] === '1' || session_params[:package] === '2' || session_params[:package] === '3' || session_params[:package] === '4')
-      logger.info ("SHOW DEFAULT PACKAGE #{session_params[:package]} #{session_params[:package]=== '1'}") 
+    if defined?(session_params) && (session_params[:package] === "1" || session_params[:package] === "2" || session_params[:package] === "3" || session_params[:package] === "4")
       return redirect_to create_package_path packages: session_params[:package]
-      end
-       
-      # Set for Sign Up as well when everything is integrated
-      # please run a migration to add package to permit as params 
-      #if defined?(user_params) && user_params[:package]
-      #logger.info ("SHOW DEFAULT PACKAGE PARAMS SignUP #{user_params}") 
-      #logger.info ("SHOW DEFAULT PACKAGE SignUP #{user_params[:package]}") 
-      #return redirect_to create_package_path packages: user_params[:package]
-      #end 
+    end
+
     # Admin users should be redirected to the admin page
     if user.has_role? :super_admin
       redirect_to admins_path
@@ -57,12 +49,12 @@ module Authenticator
       dont_redirect_to = [root_url, signin_url, ldap_signin_url, signup_url, unauthorized_url,
                           internal_error_url, not_found_url]
       url = if cookies[:return_to] && !dont_redirect_to.include?(cookies[:return_to])
-        cookies[:return_to]
-      elsif user.role.get_permission("can_create_rooms")
-        user.main_room
-      else
-        cant_create_rooms_path
-      end
+          cookies[:return_to]
+        elsif user.role.get_permission("can_create_rooms")
+          user.main_room
+        else
+          cant_create_rooms_path
+        end
 
       # Delete the cookie if it exists
       cookies.delete :return_to if cookies[:return_to]

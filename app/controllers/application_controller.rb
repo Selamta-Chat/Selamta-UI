@@ -51,7 +51,6 @@ class ApplicationController < ActionController::Base
                                            "Content-Type" => "application/json",
                                            "user_id" => "#{@current_user.uid}",
                                          })
-      logger.info "APP Called ==> #{@subscribed_package}"
     end
   end
 
@@ -94,11 +93,11 @@ class ApplicationController < ActionController::Base
   def maintenance_mode?
     if ENV["MAINTENANCE_MODE"] == "true"
       render "errors/greenlight_error", status: 503, formats: :html,
-                                   locals: {
-                                     status_code: 503,
-                                     message: I18n.t("errors.maintenance.message"),
-                                     help: I18n.t("errors.maintenance.help"),
-                                   }
+                                        locals: {
+                                          status_code: 503,
+                                          message: I18n.t("errors.maintenance.message"),
+                                          help: I18n.t("errors.maintenance.help"),
+                                        }
     end
     if Rails.configuration.maintenance_window.present?
       unless cookies[:maintenance_window] == Rails.configuration.maintenance_window
@@ -275,17 +274,17 @@ class ApplicationController < ActionController::Base
 
       if e.message.eql? "No user with that id exists"
         render "errors/greenlight_error", locals: { message: I18n.t("errors.not_found.user_not_found.message"),
-                                               help: I18n.t("errors.not_found.user_not_found.help") }
+                                                    help: I18n.t("errors.not_found.user_not_found.help") }
       elsif e.message.eql? "Provider not included."
         render "errors/greenlight_error", locals: { message: I18n.t("errors.not_found.user_missing.message"),
-                                               help: I18n.t("errors.not_found.user_missing.help") }
+                                                    help: I18n.t("errors.not_found.user_missing.help") }
       elsif e.message.eql? "That user has no configured provider."
         render "errors/greenlight_error", locals: { status_code: 501,
-                                               message: I18n.t("errors.no_provider.message"),
-                                               help: I18n.t("errors.no_provider.help") }
+                                                    message: I18n.t("errors.no_provider.message"),
+                                                    help: I18n.t("errors.no_provider.help") }
       else
         render "errors/greenlight_error", locals: { status_code: 500, message: I18n.t("errors.internal.message"),
-                                               help: I18n.t("errors.internal.help"), display_back: true }
+                                                    help: I18n.t("errors.internal.help"), display_back: true }
       end
     end
   end

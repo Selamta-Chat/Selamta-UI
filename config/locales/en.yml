@@ -321,6 +321,7 @@ en:
     cancel: Cancel
     bill_cycle: Bill Cycle
     package_subscription: Subscribed Package
+    no_package: You have Not Purchased any Packages Yet.
     select_package: There is No Package selected. Please Select a Package.
     flash_new: You already have a New package in process, If you wish to Buy a new package please cancel the Existing Package
   pricing:

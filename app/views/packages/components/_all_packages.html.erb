@@ -1,8 +1,6 @@
 <div class="sessions pb-5">
     <div class="container pt-6">
- 
- <%= @packages%> 
- 
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -18,40 +16,49 @@
                                         <%= t("package.status") %>
                                     </th>
 
-                                     <th>
+                                    <th>
                                         <%= t("package.start") %>
                                     </th>
 
-                                     <th>
+                                    <th>
                                         <%= t("package.end") %>
                                     </th>
 
-                                     <th>
+                                    <th>
                                         <%= t("package.merchant_order_id") %>
                                     </th>
 
-                                     <th>
+                                    <th>
                                         <%= t("package.transaction_code") %>
                                     </th>
 
-                                     <th>
+                                    <th>
                                         <%= t("package.currency") %>
                                     </th>
-                                        
-                                     <th>
-                                        
+
+                                    <th>
+
                                     </th>
 
 
                                 </tr>
                             </thead>
                             <tbody id="packages-table">
+                                <% if @packages.empty? %>
+                                <tr>
+                                    <td colspan="10" class="text-center h4 p-6 font-weight-normal">
+
+                                        <%= t("package.no_package") %>
+
+                                    </td>
+                                </tr>
+                                <%end%>
                                 <% @packages.each do |package| %>
                                 <%= render "packages/components/package_row", package: package %>
                                 <% end %>
                             </tbody>
                         </table>
- 
+
                         <% if !@packages.empty?%>
                         <div class="float-md-right mt-4">
                             <%== pagy_bootstrap_nav(@pagy) %>
