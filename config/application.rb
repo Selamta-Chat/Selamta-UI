@@ -130,9 +130,12 @@ module Greenlight
 
     # DEFAULTS
 
-    # Default branding image if the user does not specify one
-    config.branding_image_default = "https://raw.githubusercontent.com/bigbluebutton/greenlight/master/app/assets/images/logo_with_text.png"
-
+    # Default Selamta Chat branding image if the user does not specify one
+    config.branding_image_default = "https://user-images.githubusercontent.com/45931201/97817131-86b61f80-1cab-11eb-9f4c-4098d4113f7c.png"
+    
+    # Previous BigblueButton Default Image also replaced in User Mailer
+    #"https://raw.githubusercontent.com/bigbluebutton/greenlight/master/app/assets/images/logo_with_text.png"
+    
     # Default primary color if the user does not specify one
     config.primary_color_default = "#467fcf"
 
